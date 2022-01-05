@@ -4,3 +4,13 @@ A lightweight container that removes old test runs from Sorry-Cypress. Note: Thi
 The container is designed to be run regularly in cloud native workflows (eg [Argo Workflows](https://argoproj.github.io/argo-workflows/), or [Tekton](https://tekton.dev/)), but will run wherever a container can be run.
 
 ![CI](https://github.com/sendible-labs/sorry-cypress-run-cleaner/actions/workflows/ci.yaml/badge.svg) ![Release](https://github.com/sendible-labs/sorry-cypress-run-cleaner/actions/workflows/release.yaml/badge.svg)
+
+# Environment Variables
+We pass key information to the container using environment variables.
+TODO
+
+# Docker run examples
+TODO
+
+# Argo Workflows example
+TODO
