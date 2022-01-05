@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: clean-sorry-cypress-cron
+  annotations:
+    workflows.argoproj.io/description: >-
+      Runs the workflow template 'clean-sorry-cypress' every Wednesday at 22:00.
+spec:
+  schedule: "0 22 * * WED"
+  timezone: "Europe/London"
+  startingDeadlineSeconds: 0
+  suspend: false
+  workflowMetadata:
+    labels:
+      cron: "true"
+  workflowSpec:
+    workflowTemplateRef: 
+      name: clean-sorry-cypress
