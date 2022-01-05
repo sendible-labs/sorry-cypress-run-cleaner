@@ -2,8 +2,8 @@ FROM alpine:latest
 
 RUN apk --update add curl jq
 
-COPY test-deleter.sh .
+COPY sorry-cypress-run-deleter.sh .
 
-RUN chmod +x test-deleter.sh
+RUN chmod +x sorry-cypress-run-deleter.sh
 
-ENTRYPOINT ["test-deleter.sh"]
+ENTRYPOINT ["sorry-cypress-run-deleter.sh"]
