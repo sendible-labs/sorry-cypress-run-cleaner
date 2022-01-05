@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  generateName: clean-sorry-cypress
+  annotations:
+    workflows.argoproj.io/description: >-
+      This workflow template contains a template that deletes Sorry Cypress test runs.
+      
+      You can either set a date range yourself or it will default to deleting tests that 
+      are 100 days old from todays date. You will also need to provide the URL that points 
+      to your Sorry Cypress. 
+spec:
+  entrypoint: main
+  templates:
+  - name: main
+    dag:
+      tasks:
+        - name: clean-cypress
+          template: clean-cypress
+          arguments:
+            parameters:
+              - name: start_date
+                value: ""
+              - name: end_date
+                value: ""
+              - name: cypress_url
+                value: ""
+
+  - name: clean-cypress
+    inputs:
+      parameters:
+      - name: start_date
+      - name: end_date
+      - name: cypress_url
+    container:
+      image: ghcr.io/sendible-labs/sorry-cypress-run-cleaner:stable
+      imagePullPolicy: Always
+      env:
+        - name: start_date
+          value: "{{inputs.parameters.start_date}}"
+        - name: end_date
+          value: "{{inputs.parameters.end_date}}"
+        - name: cypress_url
+          value: "{{inputs.parameters.cypress_url}}"
