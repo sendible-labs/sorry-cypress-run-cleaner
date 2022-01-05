@@ -1,10 +1,9 @@
-LABEL org.opencontainers.image.source https://github.com/sendible-labs/sorry-cypress-run-cleaner
 FROM alpine:latest
 
 RUN apk --update add curl jq
 
-COPY test-deleter.sh .
+COPY sorry-cypress-run-cleaner.sh .
 
-RUN chmod +x test-deleter.sh
+RUN chmod +x sorry-cypress-run-cleaner.sh
 
-ENTRYPOINT ["test-deleter.sh"]
+ENTRYPOINT ["sorry-cypress-run-cleaner.sh"]
