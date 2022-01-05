@@ -1,3 +1,4 @@
+LABEL org.opencontainers.image.source https://github.com/sendible-labs/sorry-cypress-run-cleaner
 FROM alpine:latest
 
 RUN apk --update add curl jq
