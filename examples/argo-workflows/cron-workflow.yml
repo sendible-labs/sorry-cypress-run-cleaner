@@ -2,9 +2,14 @@ apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
   name: clean-sorry-cypress-cron
+  # You will probably want to change the namespace.
+  namespace: argo
   annotations:
     workflows.argoproj.io/description: >-
       Runs the workflow template 'clean-sorry-cypress' every Wednesday at 22:00.
+    workflows.argoproj.io/maintainer: 'sendible.com'
+    workflows.argoproj.io/version: '>= 3.0.0'
+    workflows.argoproj.io/sorry-cypress-version: '>= v2.0.0'
 spec:
   schedule: "0 22 * * WED"
   timezone: "Europe/London"
