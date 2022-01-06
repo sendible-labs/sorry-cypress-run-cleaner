@@ -24,10 +24,11 @@ spec:
           template: clean-cypress
           arguments:
             parameters:
+            # Adjust the values of these parameters according to your requirements.
               - name: run_days_to_keep
-                value: ""
+                value: "200"
               - name: sorry_cypress_api_url
-                value: ""
+                value: "http://api-sorry-cypress.sorry-cypress.svc.cluster.local"
 
   - name: clean-cypress
     inputs:
