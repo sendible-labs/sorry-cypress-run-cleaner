@@ -3,6 +3,12 @@
 default_start="2010-01-01"
 default_end=$(date -I -d "-100days") #100 days ago
 
+if [ -z "$sorry_cypress_api_url" ]
+then
+    echo -e "Error: Missing Sorry Cypress API url\nCheck the workflowTemplate to ensure the url is correct"
+    exit 1
+fi
+
 if [ -z "$run_days_to_keep" ]
 then
     required_end=$(date -I -d "-100days")
@@ -13,7 +19,7 @@ fi
 actual_start=${start_date:=$default_start}
 actual_end=${required_end:-$default_end}
 
-echo Deleting tests from $actual_start till $actual_end
+echo Deleting tests from $actual_start till $actual_end for $sorry_cypress_api_url
 
 curl $sorry_cypress_api_url -H 'Accept-Encoding: gzip, deflate, br' \
 -H 'Content-Type: application/json' \
