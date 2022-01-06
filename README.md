@@ -11,7 +11,7 @@ The container is designed to be run regularly in cloud native workflows (eg [Arg
 We pass key information to the container using environment variables.
 | Environment Variable  | Type      | Description                                                                                                                                       |
 |---------------------- |---------- |-------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sorry_cypress_api_url`               | string    | [required] The url of your sorry-cypress API endpoint. Include `http://` or `https://` where appropriate. If you are running this container within the same cluster as Sorry Cypress (e.g. using Argo Workflows), we strongly suggest you use the internal dns entry for the endpoint to avoid loopbacks. For example `http://api-sorry-cypress.sorry-cypress.svc.cluster.local`
+| `sorry_cypress_api_url`               | string    | [required] The url of your sorry-cypress API endpoint. Include `http://` or `https://` where appropriate. If you are running this container within the same cluster as Sorry Cypress (e.g. using Argo Workflows), we strongly suggest you use the internal dns entry for the endpoint to avoid hairpinning. For example `http://api-sorry-cypress.sorry-cypress.svc.cluster.local`
 | `run_days_to_keep`               | int    | The number of days to keep Sorry Cypress runs before cleaning them. If omitted, defaults to 100 days.
 
 # Docker run example
