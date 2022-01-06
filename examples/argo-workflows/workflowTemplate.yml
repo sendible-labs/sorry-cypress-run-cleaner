@@ -1,14 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  generateName: clean-sorry-cypress
+  generateName: clean-sorry-cypress-
+  namespace: argo
   annotations:
     workflows.argoproj.io/description: >-
-      This workflow template contains a template that deletes Sorry Cypress test runs.
+      This workflowTemplate contains a step that cleans Sorry Cypress test runs via the Sorry Cypress API.
       
-      You can either set a date range yourself or it will default to deleting tests that 
-      are 100 days old from todays date. You will also need to provide the URL that points 
-      to your Sorry Cypress. 
+      You can either set the number of days to retain or it will default to cleaning tests that are 100 days old from todays date.
+
+      You will need to provide the URL that points to your Sorry Cypress API url.
+    workflows.argoproj.io/maintainer: 'sendible.com'
+    workflows.argoproj.io/version: '>= 3.0.0'
+    workflows.argoproj.io/sorry-cypress-version: '>= v2.0.0'
 spec:
   entrypoint: main
   templates:
@@ -19,26 +23,28 @@ spec:
           template: clean-cypress
           arguments:
             parameters:
-              - name: start_date
+              - name: run_days_to_keep
                 value: ""
-              - name: end_date
-                value: ""
-              - name: cypress_url
+              - name: sorry_cypress_api_url
                 value: ""
 
   - name: clean-cypress
     inputs:
       parameters:
-      - name: start_date
-      - name: end_date
-      - name: cypress_url
+      - name: run_days_to_keep
+      - name: sorry_cypress_api_url
     container:
       image: ghcr.io/sendible-labs/sorry-cypress-run-cleaner:stable
       imagePullPolicy: Always
       env:
-        - name: start_date
-          value: "{{inputs.parameters.start_date}}"
-        - name: end_date
-          value: "{{inputs.parameters.end_date}}"
-        - name: cypress_url
-          value: "{{inputs.parameters.cypress_url}}"
+        - name: run_days_to_keep
+          value: "{{inputs.parameters.run_days_to_keep}}"
+        - name: sorry_cypress_api_url
+          value: "{{inputs.parameters.sorry_cypress_api_url}}"
+      resources:
+        requests:
+          memory: 32Mi
+          cpu: 50m
+      #Fail workflow if still running after 20 minutes
+      activeDeadlineSeconds: 1200
+
