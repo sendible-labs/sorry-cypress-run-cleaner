@@ -9,7 +9,10 @@ actual_end=${end_date:=$default_end}
 echo Deleting tests from $actual_end till $actual_start 
 
 curl $cypress_url -H 'Accept-Encoding: gzip, deflate, br' \
--H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: $cypress_url' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Connection: keep-alive' \
+-H 'DNT: 1' -H 'Origin: $cypress_url' \
 --data-binary '{"query":"mutation {\n    deleteRunsInDateRange(startDate: \"'$actual_start'T00:00:00.000Z\", endDate: \"'$actual_end'T00:00:00.000Z\") {\n      success\n      message\n      runIds\n      __typename\n    }\n  }\n"}' \
 --compressed > /home/output.txt
 
