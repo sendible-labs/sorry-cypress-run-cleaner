@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  generateName: clean-sorry-cypress-
+  name: clean-sorry-cypress
   # You will probably want to change the namespace.
   namespace: argo
   annotations:
