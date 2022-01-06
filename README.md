@@ -32,6 +32,6 @@ To execute as a linux cron, wrap your docker run command in a simple shell scrip
 # Argo Workflows examples
 [Workflow Examples](https://github.com/sendible-labs/sorry-cypress-run-cleaner/tree/main/examples/argo-workflows)
 
-We have provided an example workflowTemplate. Deploy this to your cluser in an appropriate namespace for your setup. You can manually trigger this in the usual ways.
+We have provided an example workflowTemplate. Deploy this to your cluster in an appropriate namespace for your setup. You can manually trigger this in the usual ways.
 
 If you wish to have it run regularly, the example cronWorkflow will call the workflow template at the defined cron intervals.
