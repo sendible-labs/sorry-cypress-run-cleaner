@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update add curl jq
+RUN apk --update add curl jq coreutils
 
 COPY sorry-cypress-run-cleaner.sh .
 

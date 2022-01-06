@@ -1,18 +1,25 @@
 #!/bin/sh
 
 default_start="2010-01-01"
-default_end="2010-12-12"
-default_end=$(date -I -d "-2400:00:00") #100 days ago
+default_end=$(date -I -d "-100days") #100 days ago
+
+if [ -z "$run_days_to_keep" ]
+then
+    required_end=$(date -I -d "-100days")
+else
+    required_end=$(date -I -d "-$run_days_to_keep"days)
+fi
+
 actual_start=${start_date:=$default_start}
-actual_end=${end_date:=$default_end}
+actual_end=${required_end:-$default_end}
 
-echo Deleting tests from $actual_end till $actual_start 
+echo Deleting tests from $actual_start till $actual_end
 
-curl $cypress_url -H 'Accept-Encoding: gzip, deflate, br' \
+curl $sorry_cypress_api_url -H 'Accept-Encoding: gzip, deflate, br' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
 -H 'Connection: keep-alive' \
--H 'DNT: 1' -H 'Origin: $cypress_url' \
+-H 'DNT: 1' -H 'Origin: $sorry_cypress_api_url' \
 --data-binary '{"query":"mutation {\n    deleteRunsInDateRange(startDate: \"'$actual_start'T00:00:00.000Z\", endDate: \"'$actual_end'T00:00:00.000Z\") {\n      success\n      message\n      runIds\n      __typename\n    }\n  }\n"}' \
 --compressed > /home/output.txt
 
