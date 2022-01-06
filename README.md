@@ -12,7 +12,7 @@ We pass key information to the container using environment variables.
 | `sorry_cypress_api_url`               | string    | [required] The url of your sorry-cypress API endpoint. Include `http://` or `https://` where appropriate. If you are running this container within the same cluster as Sorry Cypress (e.g. using Argo Workflows), we strongly suggest you use the internal dns entry for the endpoint to avoid loopbacks. For example `http://api-sorry-cypress.sorry-cypress.svc.cluster.local`
 | `run_days_to_keep`               | int    | The number of days to keep Sorry Cypress runs before cleaning them. If omitted, defaults to 100 days.
 
-# Docker run examples
+# Docker run example
 This example with run against our defined API and keep the last 200 days of Sorry Cypress test runs.
 ```
 docker run \
@@ -21,7 +21,7 @@ docker run \
 ghcr.io/sendible-labs/sorry-cypress-run-cleaner:stable
 ```
 
-## Crontab Docker examples
+## Crontab Docker example
 To execute as a linux cron, wrap your docker run command in a simple shell script and then call the script at the desired interval.
 ```
 0 22 * * WED /path/to/script.sh
