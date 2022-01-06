@@ -5,7 +5,7 @@ default_end=$(date -I -d "-100days") #100 days ago
 
 if [ -z "$sorry_cypress_api_url" ]
 then
-    echo -e "Error: Missing Sorry Cypress API url Environment Variable"
+    echo -e "Error: Missing Sorry Cypress API url Environment Variable. Exiting."
     exit 1
 fi
 
