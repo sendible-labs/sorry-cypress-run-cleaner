@@ -23,7 +23,7 @@ docker run \
 ghcr.io/sendible-labs/sorry-cypress-run-cleaner:stable
 ```
 
-# Crontab Docker example
+# Linux crontab example
 To execute as a linux cron, wrap your docker run command in a simple shell script and then call the script at the desired interval.
 ```
 0 22 * * WED /path/to/script.sh
