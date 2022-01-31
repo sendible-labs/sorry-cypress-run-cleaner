@@ -23,14 +23,17 @@ docker run \
 ghcr.io/sendible-labs/sorry-cypress-run-cleaner:stable
 ```
 
-## Crontab Docker example
+# Crontab Docker example
 To execute as a linux cron, wrap your docker run command in a simple shell script and then call the script at the desired interval.
 ```
 0 22 * * WED /path/to/script.sh
 ```
 
+# Kubernetes cronjob example
+[Kubernetes Cronjob Example](https://github.com/sendible-labs/sorry-cypress-run-cleaner/tree/main/examples/argo-workflows)
+
 # Argo Workflows examples
-[Workflow Examples](https://github.com/sendible-labs/sorry-cypress-run-cleaner/tree/main/examples/argo-workflows)
+[Workflow Examples](https://github.com/sendible-labs/sorry-cypress-run-cleaner/blob/main/examples/kubernetes/k8s-cron.yaml)
 
 We have provided an example workflowTemplate. Deploy this to your cluster in an appropriate namespace for your setup. You can manually trigger this in the usual ways.
 
