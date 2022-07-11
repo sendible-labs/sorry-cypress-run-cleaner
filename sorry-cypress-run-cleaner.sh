@@ -21,7 +21,7 @@ actual_end=${required_end:-$default_end}
 
 echo Deleting tests from $actual_start till $actual_end for $sorry_cypress_api_url
 
-curl $sorry_cypress_api_url -H 'Accept-Encoding: gzip, deflate, br' \
+curl -s $sorry_cypress_api_url -H 'Accept-Encoding: gzip, deflate, br' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json' \
 -H 'Connection: keep-alive' \
